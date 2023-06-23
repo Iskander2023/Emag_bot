@@ -2,10 +2,12 @@ from aiogram import Router
 from aiogram.filters.text import Text
 from aiogram.types import Message
 from aiogram.types import FSInputFile
+from bot.decorators.decorators import restricted
 
 router = Router()
 
 @router.message(Text(text="vl4"))  # выводит фотографию при нажатии на кнопку vl4
+@restricted()
 async def answer_machine(message: Message):
 
     photos = [
