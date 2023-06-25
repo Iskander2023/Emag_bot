@@ -2,19 +2,27 @@ import os
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher
-from bot.handlers import vl2, vl4
+from aiogram.fsm.storage.memory import MemoryStorage
+
+from bot.handlers import vl, vm
 from handlers import start, help
 
 async def main():
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
                         )
-    dp = Dispatcher()
+
     bot = Bot(token=os.getenv('token'))
+
+    storage = MemoryStorage()
+    dp = Dispatcher(storage=storage)
+
     dp.include_router(start.router)
     dp.include_router(help.router)
-    dp.include_router(vl2.router)
-    dp.include_router(vl4.router)
+    dp.include_router(vl.router)
+    dp.include_router(vm.router)
+
+
 
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
