@@ -11,6 +11,7 @@ router = Router()
 @router.message(UserState.machine_selection,
                 F.text.casefold() == "vm") # указываем "слово" именно с маленькой буквы, casefold приводит текст к нижнему регистру
 async def answer_machine(message: Message, state: FSMContext) -> None:
+    print(message.text)
     await state.set_state(UserState.vm_state)
     await message.answer(
         text="Спасибо. Теперь, пожалуйста, выберите интересующий Вас станок:",
@@ -22,6 +23,7 @@ async def answer_machine(message: Message, state: FSMContext) -> None:
 )
 async def answer_machine(message: Message, state: FSMContext) -> None:
     await state.set_state(UserState.vm_state)
+    print(message.text)
 
     photos = [
               FSInputFile('/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vm/vm9/vm9_machine.jpg'),

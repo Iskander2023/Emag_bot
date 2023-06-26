@@ -3,11 +3,13 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
-
+from bot.database.data import create_db
 from bot.handlers import vl, vm
 from handlers import start, help
 
 async def main():
+    create_db()
+
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
                         )

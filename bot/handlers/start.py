@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from aiogram.filters import Command
-from bot.decorators.decorators import is_user_allowed
+from bot.functions_to_work.func import is_user_allowed
 from bot.keyboards.button_lists import start_keyboard_menu, list_of_machine_models
 from bot.keyboards.machine_keyboard import make_row_keyboard
 from bot.states_class.user_class import UserState
@@ -14,7 +14,7 @@ async def cmd_start(message: Message, state: FSMContext) -> None:
     name = message.from_user.first_name
     user_id = message.from_user.id # юзер айди
     if is_user_allowed(user_id) is False:
-        await message.reply(f"У вас нет доступа к этой команде.")
+        await message.reply(f"{name} у вас нет доступа к этой команде.")
         return
     else:
         await state.set_state(UserState.start_state)
