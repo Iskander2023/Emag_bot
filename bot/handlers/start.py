@@ -27,7 +27,7 @@ async def cmd_start(message: Message, state: FSMContext) -> None:
     UserState.start_state,
     F.text.in_(start_keyboard_menu)
 )
-async def handle_start_command(message: Message, state: FSMContext):
+async def menu_command_selection (message: Message, state: FSMContext):
     if message.text == "Станки":
         await state.set_state(UserState.machine_selection)
         await message.answer(
