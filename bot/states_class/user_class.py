@@ -6,4 +6,4 @@ class UserState(StatesGroup):
     machine_selection = State()
     vl_state = State()
     vm_state = State()
-    projects = State()
+    select_contacts = State()
