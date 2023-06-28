@@ -3,16 +3,16 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from bot.database.machine_base import select_machines_by_line_and_model
 from bot.keyboards.button_lists import machines_list_vm
-from bot.states_class.user_class import UserState
+from bot.states_class.user_class import BotState
 
 router = Router()
 
 @router.message(
-    UserState.vm_state,
+    BotState.vm_state,
     F.text.in_(machines_list_vm)
 )
 async def answer_machine(message: Message, state: FSMContext) -> None:
-    await state.set_state(UserState.vm_state)
+    await state.set_state(BotState.vm_state)
 
     data = await state.update_data(model=message.text)
     result = await select_machines_by_line_and_model(**data)
@@ -25,10 +25,10 @@ async def answer_machine(message: Message, state: FSMContext) -> None:
             caption = caption[:1020] + "..."
         await message.answer_photo(photo, caption)
 
-@router.message(UserState.vm_state
+@router.message(BotState.vm_state
                 )
 async def process_unknown_write_bots(message: Message, state: FSMContext) -> None:
-    await state.set_state(UserState.vm_state)
+    await state.set_state(BotState.vm_state)
     await message.answer(f"Станка {message.text} в списке нет. "
                          f"\nЗдесь представлены станки ветки VM "
                          f"\nВернитесь в главное меню кнопкой /start\n")
