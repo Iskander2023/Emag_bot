@@ -8,8 +8,6 @@ from bot.states_class.user_class import BotState
 
 router = Router()
 
-
-
 @router.message(
     BotState.vl_state,
     F.text.in_(machines_list_vl)

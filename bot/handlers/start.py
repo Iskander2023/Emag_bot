@@ -30,7 +30,7 @@ async def menu_command_selection (message: Message, state: FSMContext):
     if message.text == "Станки":
         await state.set_state(BotState.machine_selection)
         await message.answer(
-            text="Спасибо. Теперь, пожалуйста, выберите модельный ряд станков:",
+            text="Спасибо. Теперь, пожалуйста, выберите станок нужной Вам фирмы:",
             reply_markup=make_row_keyboard(dekay_or_emag))
     elif message.text == "О нас":
         await state.set_state(BotState.about_us)

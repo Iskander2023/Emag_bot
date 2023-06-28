@@ -57,20 +57,21 @@ def insert_machine_list(company_choice: list[str], line_names: list[str], models
     for company_choice, line_name, model, image_path, description in zip(company_choice, line_names, models, image_paths, descriptions):
         with open(image_path, 'rb') as file:
             image_data = file.read()
-        cursor.execute('INSERT INTO machines (company_choice, line_name, model, image, description) VALUES (?, ?, ?, ?)',
+        cursor.execute('INSERT INTO machines (company_choice, line_name, model, image, description) VALUES (?, ?, ?, ?, ?)',
                        (company_choice, line_name, model, image_data, description))
 
     conn.commit()
     conn.close()
 
-# line_names = []
-# models = []
-# image_paths = ['/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vm/vm12/vm12_machine.jpg',
-#               '/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vm/vm12/vm12_clamping_device.jpg']
-# descriptions = ["Vm12 machine",
-#                 "Clamping device"]
+company_choice = ["Dekay", "Dekay"]
+line_names = ["V", "Y"]
+models = ["V-1160", "Y-3122"]
+image_paths = ['/Users/admin/PycharmProjects/Emag_bot/mashines_foto/dekay v-1160/v-1160.jpeg',
+              '/Users/admin/PycharmProjects/Emag_bot/mashines_foto/dekay y-3122/y-3122.jpeg']
+descriptions = ["V–1160 — это трехосевой вертикально-фрезерный универсальный фрезерный станок с ЧПУ на роликовых направляющих качения. Станок выделяется достаточно крупной рабочей зоной, высокой скоростью перемещения рабочих органов по линейным осям и повышенной скоростью вращения шпинделя.",
+                "Y-3122"]
 
-#insert_machine_list(line_names, models, image_paths, descriptions)
+#insert_machine_list(company_choice, line_names, models, image_paths, descriptions)
 
 
 async def select_machines_by_line_and_model(company_choice, line_name, model):
@@ -87,18 +88,18 @@ async def select_machines_by_line_and_model(company_choice, line_name, model):
     return rows
 
 
-def add_column_to_table(table_name: str, column_name: str, data_type: str):
-    """
-    Функция для добавления новых пролей в БД
-    :param table_name: название таблицы
-    :param column_name: название поля
-    :param data_type: тип данных
-    :return:
-    """
-    conn = sqlite3.connect(path_to_machines_db)
-    c = conn.cursor()
-    c.execute(f"ALTER TABLE {table_name} ADD COLUMN {column_name} {data_type}")
-    conn.commit()
-    conn.close()
+# def add_column_to_table(table_name: str, column_name: str, data_type: str):
+#     """
+#     Функция для добавления новых пролей в БД
+#     :param table_name: название таблицы
+#     :param column_name: название поля
+#     :param data_type: тип данных
+#     :return:
+#     """
+#     conn = sqlite3.connect(path_to_machines_db)
+#     c = conn.cursor()
+#     c.execute(f"ALTER TABLE {table_name} ADD COLUMN {column_name} {data_type}")
+#     conn.commit()
+#     conn.close()
 
 

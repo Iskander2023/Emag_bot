@@ -1,8 +1,11 @@
 
 start_keyboard_menu = ["Станки", "Изготовленые детали", "О нас"]
 dekay_or_emag = ["Dekay", "EMAG", "в меню =>>"]
+list_of_models = ["VL", "VM", "V", "Y", "в меню =>>"]
 list_of_emag_models = ["VL", "VM", "в меню =>>"]
-list_of_dekay_models = ["", ""]
+list_of_dekay_models = ["V", "Y", "в меню =>>"]
+machines_list_dekay_v = ["V-1160", "в меню =>>"]
+machines_list_dekay_y = ["Y-3122", "в меню =>>"]
 machines_list_vl = ["vl2", "vl4", "в меню =>>"]
 machines_list_vm = ["vm9", "vm12", "в меню =>>"]
 about_the_company = ["Контакты", "О нашей компании", "Наши услуги", "в меню =>>"]
