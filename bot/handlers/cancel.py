@@ -5,7 +5,7 @@ from aiogram.filters import Command, Text
 
 from bot.keyboards.button_lists import start_keyboard_menu
 from bot.keyboards.machine_keyboard import make_row_keyboard
-from bot.states_class.user_class import BotState
+from bot.states_class.bot_states import BotState
 
 router = Router()
 

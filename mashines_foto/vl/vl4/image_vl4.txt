@@ -1,0 +1,3 @@
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl4/vl4_mashine_1_2.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl4/vl4_revolver_1_2.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl4/vl4_drilling_1_2.jpg

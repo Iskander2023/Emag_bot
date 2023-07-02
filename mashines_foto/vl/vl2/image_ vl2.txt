@@ -1,0 +1,5 @@
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl2/vl2_mashine_1.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl2/vl2_probe.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl2/vl2_revolver.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl2/vl2_automation.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vl/vl2/vl2_billet.jpg

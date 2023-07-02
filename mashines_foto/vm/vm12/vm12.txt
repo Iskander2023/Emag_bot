@@ -1,0 +1,2 @@
+Vm12 machine
+Clamping device

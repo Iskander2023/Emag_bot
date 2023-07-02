@@ -1,0 +1,4 @@
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vm/vm9/vm9_machine.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vm/vm9/vm9_installation_detail.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vm/vm9/vm9_part_processing.jpg
+/Users/admin/PycharmProjects/Emag_bot/mashines_foto/vm/vm9/vm9_part_processing2.jpg

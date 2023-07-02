@@ -2,29 +2,6 @@ import sqlite3
 import aiosqlite
 from bot.functions.paths import path_to_machines_db
 
-
-def create_employees_table():
-    """
-    Функция, создающая таблицу контактов в базе данных machines.db.
-    :param :
-    :return: None
-    """
-    with sqlite3.connect(path_to_machines_db) as conn:
-        cur = conn.cursor()
-
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS employee_contacts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  department TEXT,
-                  first_name TEXT,
-                  surname TEXT,
-                  position_at_work TEXT,
-                  phone_number TEXT,
-                  email TEXT
-            )
-        """)
-        conn.commit()
-
 def insert_employee_list(departments: list[str], first_names: list[str], surnames: list[str], positions_at_work: list[str], phone_numbers: list[str], emails: list[str]):
     """
     функция для загрузки контактов

@@ -3,16 +3,14 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
-from bot.database.about_company import create_about_company
-from bot.database.contact_database import create_employees_table
 from bot.database.machine_base import create_db
-from bot.handlers import vl, vm, about_us, machine_selection, cancel, dekay
+from bot.handlers import about_us, machine_selection, cancel, choice_machine, \
+                         details_selection, part_selection
 from handlers import start, help
 
 async def main():
     create_db()
-    create_employees_table()
-    create_about_company()
+
 
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
@@ -26,11 +24,12 @@ async def main():
     dp.include_router(start.router)
     dp.include_router(cancel.router)
     dp.include_router(help.router)
-    dp.include_router(vl.router)
-    dp.include_router(vm.router)
+    dp.include_router(choice_machine.router)
     dp.include_router(about_us.router)
     dp.include_router(machine_selection.router)
-    dp.include_router(dekay.router)
+    dp.include_router(details_selection.router)
+    dp.include_router(part_selection.router)
+
 
 
 

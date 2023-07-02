@@ -5,7 +5,7 @@ from bot.database.about_company import select_company
 from bot.database.contact_database import select_contacts
 from bot.keyboards.button_lists import contacts_list, about_the_company
 from bot.keyboards.machine_keyboard import make_row_keyboard
-from bot.states_class.user_class import BotState
+from bot.states_class.bot_states import BotState
 
 router = Router()
 
@@ -20,7 +20,7 @@ async def answer_about_us(message: Message, state: FSMContext) -> None:
         await message.answer(
             text="Спасибо. Теперь, пожалуйста, выберите контакты:",
             reply_markup=make_row_keyboard(contacts_list))
-    if message.text == "О нашей компании":
+    elif message.text == "О нас":
         await state.set_state(BotState.about_company)
         about = await select_company(name="EMAG")
         for data in about:
@@ -33,6 +33,13 @@ async def answer_about_us(message: Message, state: FSMContext) -> None:
             await message.answer(text=message_text, parse_mode="Markdown")
         await state.set_state(BotState.about_us)
 
+@router.message(BotState.about_us
+                )
+async def process_unknown_dekay(message: Message, state: FSMContext) -> None:
+    await state.set_state(BotState.about_us)
+    await message.answer(f"Команды {message.text} в списке нет. "
+                         f"\nВыберите из доступных команд"
+                         )
 
 @router.message(
     BotState.select_contacts,
@@ -52,3 +59,10 @@ async def answer_contacts(message: Message, state: FSMContext) -> None:
         await message.answer(text=message_text)
         await state.set_state(BotState.select_contacts)
 
+@router.message(BotState.select_contacts
+                )
+async def process_unknown_dekay(message: Message, state: FSMContext) -> None:
+    await state.set_state(BotState.select_contacts)
+    await message.answer(f"Контактов {message.text} в списке нет. "
+                         f"\nВыберите из доступных контактов"
+                         )

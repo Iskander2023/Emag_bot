@@ -2,28 +2,6 @@ import sqlite3
 import aiosqlite
 from bot.functions.paths import path_to_machines_db
 
-
-def create_about_company():
-    """
-    Функция, создающая таблицу о компании в базе данных machines.db.
-    :param :
-    :return: None
-    """
-    with sqlite3.connect(path_to_machines_db) as conn:
-        cur = conn.cursor()
-
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS about_company (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  name TEXT,
-                  address TEXT,
-                  info TEXT,
-                  email TEXT,
-                  website TEXT,
-                  phone_number TEXT   )
-            """)
-        conn.commit()
-
 def insert_about_company(names: list[str], addresss: list[str], infos: list[str], emails: list[str], websites: list[str], phone_numbers: list[str]):
     """
     функция для загрузки контактов

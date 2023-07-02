@@ -15,6 +15,13 @@ def is_user_allowed(user_id) -> bool:
                 return True
     return False
 
+def read_info(path_to_info):
+    with open(path_to_info) as file:
+        rows = []
+        for row in file:
+            rows.append(row.strip())  # Добавляем строку в список, удаляя символы перевода строки
+        return rows
+
 def same_pictures(image_path) -> None:
     """
     Функция принимающая список путей к файлам изображений и меняющая их под нужный размер
