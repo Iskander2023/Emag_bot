@@ -163,6 +163,19 @@ def insert_details_info(names: list[str], types: list[str], descriptions: list[s
     conn.commit()
     conn.close()
 
+async def select_details(type: str, name: str):
+    """
+    Функция получения из БД деталей по типу и названию
+    :param type: str
+    :param name: str
+    :return:
+    """
+    async with aiosqlite.connect(path_to_machines_db) as db:
+        cursor = await db.execute('SELECT image, description FROM details WHERE type = ? AND name = ?',(type, name))
+        rows = await cursor.fetchall()
+
+    return rows
+
 # names = ["OTTM", "OTTM"]
 # type = ["Муфта", "Муфта"]
 # descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/coupling/OTTM/ottm.txt")

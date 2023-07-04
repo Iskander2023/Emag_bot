@@ -32,7 +32,9 @@ async def answer_about_us(message: Message, state: FSMContext) -> None:
 
             await message.answer(text=message_text, parse_mode="Markdown")
         await state.set_state(BotState.about_us)
-
+    elif message.text == "Наши услуги":
+        await message.answer(text="В разработке")
+        await state.set_state(BotState.about_us)
 @router.message(BotState.about_us
                 )
 async def process_unknown_dekay(message: Message, state: FSMContext) -> None:

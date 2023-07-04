@@ -15,7 +15,7 @@ router = Router()
     F.text.in_(part_type)
 )
 async def part_type_selection(message: Message, state: FSMContext) -> None:
-    data = await state.update_data(choice_of_direction=message.text)
+
     state_mapping = {
         "Нефтедобдыча": (BotState.part_selection, oil_production_details),
         "Машиностроение": (BotState.part_selection, mechanical_engineering_details)
@@ -41,8 +41,7 @@ async def process_unknown_type_selection(message: Message, state: FSMContext) ->
     F.text.in_(parts_list)
 )
 async def answer_part_selection(message: Message, state: FSMContext) -> None:
-    data = await state.update_data(part_selection=message.text)
-
+    data = await state.update_data(type=message.text)
     state_mapping = {
         "Муфта": (BotState.details_choice, coupling),
         "Трубы": (BotState.details_choice, pipe_thread),
