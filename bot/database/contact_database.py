@@ -25,14 +25,28 @@ def insert_employee_list(departments: list[str], first_names: list[str], surname
     conn.commit()
     conn.close()
 
-departments = ["Юридический отдел"]
-first_names = ["Павел"]
-surnames = ["Султанов"]
-positions_at_work = ["Руководитель юр.отдела"]
-phone_numbers = ["+791234567"]
-emails = ["psultanov@emag.com"]
+# departments = ["Юридический отдел"]
+# first_names = ["Павел"]
+# surnames = ["Султанов"]
+# positions_at_work = ["Руководитель юр.отдела"]
+# phone_numbers = ["+791234567"]
+# emails = ["psultanov@emag.com"]
 
-#insert_employee_list(departments, first_names, surnames, positions_at_work, phone_numbers, emails)
+# departments = ["Технический отдел", "Технический отдел", "Технический отдел"]
+# first_names = ["Илья", "Константин", "Александр"]
+# surnames = ["Дремов", "Есипенко", "Чумаков"]
+# positions_at_work = ["Руководитель тех.отдела", "Ведущий инженер", "Сервисный инженер"]
+# phone_numbers = ["+79067367985", "+79100014089", "+79851255545"]
+# emails = ["idremov@emag.com", "kesipenko@emag.com", "achumakov@emag.com"]
+
+# departments = ["Отдел продаж", "Отдел продаж"]
+# first_names = ["Станислав", "Дмитрий"]
+# surnames = ["Дублицевич", "Мельников"]
+# positions_at_work = ["Менеджер", "Менеджер"]
+# phone_numbers = ["+79688657826", "+79206504274"]
+# emails = ["sdublizevich@emag.com", "dmelnikov@emag.com"]
+#
+# insert_employee_list(departments, first_names, surnames, positions_at_work, phone_numbers, emails)
 
 
 async def select_contacts(department):

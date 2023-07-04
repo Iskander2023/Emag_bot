@@ -15,7 +15,8 @@ async def cmd_start(message: Message, state: FSMContext) -> None:
     name = message.from_user.first_name
     user_id = message.from_user.id # юзер айди
     if is_user_allowed(user_id) is False:
-        await message.reply(f"{name} у вас нет доступа к боту.")
+        await message.reply(f"{name} у вас нет доступа к боту.\nЧтобы получить доступ пройдите по ссылке:\n"
+                            f"https://t.me/my_id_bot и пришлите свой id")
         return
     else:
         await state.set_state(BotState.start_state)

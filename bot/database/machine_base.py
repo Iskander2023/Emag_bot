@@ -2,7 +2,7 @@ import sqlite3
 import aiosqlite
 
 from bot.functions.func import read_info
-from bot.functions.paths import path_to_machines_db, path_to_vl2_txt
+from bot.functions.paths import path_to_machines_db
 
 
 def create_db():
@@ -58,13 +58,21 @@ def create_db():
         cur.execute("""
                     CREATE TABLE IF NOT EXISTS details (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        machine_id INTEGER,
                         name TEXT,
-                        description TEXT
-                        image BLOB,
-                        FOREIGN KEY (machine_id) REFERENCES machines(id) ON DELETE CASCADE
-                            )
+                        type TEXT,
+                        description TEXT,
+                        image BLOB)
                         """)
+
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS detail_machine_mapping (
+                detail_id INTEGER,
+                machine_id INTEGER,
+                FOREIGN KEY (detail_id) REFERENCES details(id) ON DELETE CASCADE,
+                FOREIGN KEY (machine_id) REFERENCES machines(id) ON DELETE CASCADE
+                )
+                """)
+
         conn.commit()
 
 def insert_machine_list(company_names: list[str], line_names: list[str], models: list[str]):
@@ -113,9 +121,9 @@ def insert_machine_info(machine_ids: list[str], images: list[str], descriptions:
     conn.commit()
     conn.close()
 
-machine_ids = ["10"]
-images = read_info("/Users/admin/PycharmProjects/Emag_bot/mashines_foto/dekay y-3122/image_y3122.txt")
-descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/mashines_foto/dekay y-3122/y3122.txt")
+# machine_ids = ["10"]
+# images = read_info("/Users/admin/PycharmProjects/Emag_bot/mashines_foto/dekay y-3122/image_y3122.txt")
+# descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/mashines_foto/dekay y-3122/y3122.txt")
 
 # create_db()
 #insert_machine_info(machine_ids, images, descriptions)
@@ -135,9 +143,52 @@ async def select_machines_by_model(model):
 
     return rows
 
+def insert_details_info(names: list[str], types: list[str], descriptions: list[str], images: list[str]):
+    """
+    функция для загрузки информации о деталях в БД
 
+    :param names: название детали
+    :param descriptions: описание детали
+    :param images: изображение
+    :return:
+    """
+    conn = sqlite3.connect(path_to_machines_db)
+    cursor = conn.cursor()
+    for name, type, description, image in zip(names, types, descriptions, images):
+        with open(image, 'rb') as file:
+            image_data = file.read()
+        cursor.execute('INSERT INTO details (name, type, description, image) VALUES (?, ?, ?, ?)',
+                       (name, type, description, image_data))
 
+    conn.commit()
+    conn.close()
 
+# names = ["OTTM", "OTTM"]
+# type = ["Муфта", "Муфта"]
+# descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/coupling/OTTM/ottm.txt")
+#images = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/coupling/OTTM/image_ottm.txt")
+
+# names = ["BATRESS", "BATRESS"]
+# type = ["Муфта", "Муфта"]
+# descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/coupling/BATRESS/batress.txt")
+# images = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/coupling/BATRESS/image_batress.txt")
+
+# names = ["CENTUM"]
+# type = ["Муфта"]
+# descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/coupling/CENTUM/centum.txt")
+# images = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/coupling/CENTUM/image_centum.txt")
+
+# names = ["Ступица"]
+# type = ["Ступица колеса"]
+# descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/automobile_hub/hub.txt")
+# images = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/automobile_hub/image_hub.txt")
+
+# names = ["Кольцо подшипника внутреннее"]
+# type = ["Кольцо подшипника внутреннее"]
+# descriptions = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/bearing_ring/ring.txt")
+# images = read_info("/Users/admin/PycharmProjects/Emag_bot/details_foto/bearing_ring/image_ring.txt")
+#
+# insert_details_info(names, type, descriptions, images)
 
 
 
