@@ -5,8 +5,8 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from bot.database.machine_base import create_db
 from bot.handlers import about_us, machine_selection, cancel, choice_machine, \
-                         details_selection, part_selection
-from handlers import start, help
+    details_selection, part_selection, help, start
+
 
 async def main():
     create_db()

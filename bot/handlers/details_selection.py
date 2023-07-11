@@ -17,7 +17,7 @@ router = Router()
 async def part_type_selection(message: Message, state: FSMContext) -> None:
 
     state_mapping = {
-        "Нефтедобдыча": (BotState.part_selection, oil_production_details),
+        "Нефтедобыча": (BotState.part_selection, oil_production_details),
         "Машиностроение": (BotState.part_selection, mechanical_engineering_details)
     }
     if message.text in state_mapping:

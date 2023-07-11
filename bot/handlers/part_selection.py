@@ -2,7 +2,7 @@ from aiogram import Router, F, types
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from bot.database.machine_base import select_details
-from bot.keyboards.button_lists import details_list, parts_list
+from bot.keyboards.button_lists import details_list
 from bot.states_class.bot_states import BotState
 
 
@@ -15,7 +15,6 @@ router = Router()
 async def answer_choice_details(message: Message, state: FSMContext) -> None:
     await state.set_state(BotState.details_choice)
     data = await state.update_data(name=message.text)
-    print("zdfdf", data)
     result = await select_details(**data)
 
     for row in result:
